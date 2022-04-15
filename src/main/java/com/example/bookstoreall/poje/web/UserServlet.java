@@ -1,19 +1,15 @@
-package com.example.bookstoreall.web;
+package com.example.bookstoreall.poje.web;
 
 
 import com.example.bookstoreall.poje.User;
 import com.example.bookstoreall.service.UserService;
 import com.example.bookstoreall.service.impl.UserServiceImpl;
 import com.example.bookstoreall.utils.WebUtils;
-import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 public class UserServlet extends BaseServlet {
 

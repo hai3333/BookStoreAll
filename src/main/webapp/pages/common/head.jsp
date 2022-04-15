@@ -14,6 +14,7 @@
             + request.getServerPort()
             + request.getContextPath()
             + "/";
+    pageContext.setAttribute("basePath",basePath);
 %>
 
 <!----- 固定base路径- base需要动态获取-->

@@ -1,6 +1,7 @@
 package com.example.bookstoreall.service;
 
 import com.example.bookstoreall.poje.Book;
+import com.example.bookstoreall.poje.Page;
 import com.example.bookstoreall.service.impl.BookServiceImpl;
 import org.junit.Test;
 
@@ -18,17 +19,17 @@ public class BookServiceTest {
 
     @Test
     public void deleteBookById() {
-        bookService.deleteBookById(65);
+        bookService.deleteBookById(72);
     }
 
     @Test
     public void updateBook() {
-        bookService.updateBook(new Book(65,"李钦钦sbb","李钦钦",new BigDecimal(23.5),1000,1,null));
+        bookService.updateBook(new Book(71,"李钦钦sbb","李钦钦",new BigDecimal(23.5),1000,1,null));
     }
 
     @Test
     public void queryBookById() {
-        System.out.println(bookService.queryBookById(65));
+        System.out.println(bookService.queryBookById(71));
     }
 
     @Test
@@ -36,5 +37,11 @@ public class BookServiceTest {
        for(Book i: bookService.queryBooks()){
            System.out.println(i);
        }
+    }
+
+
+    @Test
+    public  void page(){
+        System.out.println(bookService.page(1, Page.PAGE_SIZE));
     }
 }

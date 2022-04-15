@@ -1,4 +1,4 @@
-package com.example.bookstoreall.web;
+package com.example.bookstoreall.poje.web;
 
 import com.example.bookstoreall.poje.User;
 import com.example.bookstoreall.service.UserService;

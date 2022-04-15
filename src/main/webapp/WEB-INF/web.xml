@@ -9,7 +9,7 @@
 
     <servlet>
         <servlet-name>UserServlet</servlet-name>
-        <servlet-class>com.example.bookstoreall.web.UserServlet</servlet-class>
+        <servlet-class>com.example.bookstoreall.poje.web.UserServlet</servlet-class>
 
     </servlet>
     <servlet-mapping>
@@ -21,13 +21,24 @@
 
     <servlet>
         <servlet-name>BookServlet</servlet-name>
-        <servlet-class>com.example.bookstoreall.web.BookServlet</servlet-class>
+        <servlet-class>com.example.bookstoreall.poje.web.BookServlet</servlet-class>
 
     </servlet>
     <servlet-mapping>
         <servlet-name>BookServlet</servlet-name>
         <url-pattern>/manager/bookServlet</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ClientBookServlet</servlet-name>
+        <servlet-class>com.example.bookstoreall.poje.web.ClientBookServlet</servlet-class>
+
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClientBookServlet</servlet-name>
+        <url-pattern>/client/bookServlet</url-pattern>
+    </servlet-mapping>
+
 
     
 </web-app>
