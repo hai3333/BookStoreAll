@@ -69,7 +69,11 @@
 				<td><a href="pages/manager/book_edit.jsp?pageNo=${requestScope.page.pageTotal}">添加图书</a></td>
 			</tr>
 		</table>
+    <%--静态包含--%>
+    <%@include file="/pages/common/page_nav.jsp"%>
 	</div>
+
+
 
 
 

@@ -19,4 +19,8 @@ public interface BookService {
 
 
     Page<Book> page(int pageNo, int pageSize);
+
+    Page<Book> pageByPrice(int pageNo, int pageSize, int min, int max);
+
+    // Page<Book> pageByPrice(int pageNo, int pageSize, int min, int max);
 }

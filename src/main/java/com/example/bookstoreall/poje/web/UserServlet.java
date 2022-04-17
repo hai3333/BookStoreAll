@@ -31,12 +31,30 @@ public class UserServlet extends BaseServlet {
             //跳回登陆页面
             req.getRequestDispatcher("/pages/user/login.jsp").forward(req, resp);
         } else {
+
             //登陆成功
+            //保存用户登录之后的信息
+            req.getSession().setAttribute("user",loginUser);
+            //跳转到页面
             req.getRequestDispatcher("/pages/user/login_success.jsp").forward(req, resp);
 
         }
 
     }
+
+    /*
+    * 注销
+    * */
+
+    protected void loginOut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+                //1 销毁session中用户的登录信息
+        req.getSession().invalidate();
+
+        //2重定向到首页
+        resp.sendRedirect(req.getContextPath());
+    }
+
+
     /*
      *
      * 处理注册请求

@@ -17,8 +17,21 @@
 	<img class="logo_img" alt="" src="static/img/logo.gif" >
 	<span class="wel_word">网上书城</span>
 	<div>
-		<a href="pages/user/login.jsp">登录</a> |
-		<a href="pages/user/regist.jsp">注册</a> &nbsp;&nbsp;
+		<%--如果没有登陆 显示登录和注册的信息--%>
+		<c:if test="${empty sessionScope.user}">
+
+			<a href="pages/user/login.jsp">登录</a>
+			<a href="pages/user/regist.jsp">注册</a>
+		</c:if>
+			<%-- 如果已经登录了的话 不显示注册和登录--%>
+		<c:if test="${!empty sessionScope.user}">
+			<span>欢迎<span class="um_span">${sessionScope.user.username}</span>光临尚硅谷书城</span>
+			<a href="pages/order/order.jsp">我的订单</a>
+			<a href="userServlet?action=loginOut">注销</a>&nbsp;&nbsp;
+
+		</c:if>
+
+
 		<a href="pages/cart/cart.jsp">购物车</a>
 		<a href="pages/manager/manager.jsp">后台管理</a>
 	</div>
@@ -26,10 +39,12 @@
 <div id="main">
 	<div id="book">
 		<div class="book_cond">
-			<form action="" method="get">
-				价格：<input id="min" type="text" name="min" value=""> 元 -
-				<input id="max" type="text" name="max" value=""> 元
+			<form action="client/bookServlet" method="post">
+				<input type="hidden" name="action" value="pageByPrice">
+				价格：<input id="min" type="text" name="min" value="${param.min}"> 元 -
+				<input id="max" type="text" name="max" value="${param.max}"> 元
 				<input type="submit" value="查询" />
+
 			</form>
 		</div>
 		<div style="text-align: center">
@@ -74,68 +89,8 @@
 		</div>
 		</c:forEach>
 	</div>
-<%--分页开始--%>
-	<div id="page_nav">
-		<%--大于首页，才显示--%>
-		<c:if test="${requestScope.page.pageNo > 1}">
-			<a href="client/bookServlet?action=page&pageNo=1">首页</a>
-			<a href="client/bookServlet?action=page&pageNo=${requestScope.page.pageNo-1}">上一页</a>
-		</c:if>
-		<%--页码输出的开始--%>
-		<c:choose>
-			<%--情况 1：如果总页码小于等于 5 的情况，页码的范围是：1-总页码--%>
-			<c:when test="${ requestScope.page.pageTotal <= 5 }">
-				<c:set var="begin" value="1"/>
-				<c:set var="end" value="${requestScope.page.pageTotal}"/>
-			</c:when>
-			<%--情况 2：总页码大于 5 的情况--%>
-			<c:when test="${requestScope.page.pageTotal > 5}">
-				<c:choose>
-					<%--小情况 1：当前页码为前面 3 个：1，2，3 的情况，页码范围是：1-5.--%>
-					<c:when test="${requestScope.page.pageNo <= 3}">
-						<c:set var="begin" value="1"/>
-						<c:set var="end" value="5"/>
-					</c:when>
-					<%--小情况 2：当前页码为最后 3 个，8，9，10，页码范围是：总页码减 4 - 总页码--%>
-					<c:when test="${requestScope.page.pageNo > requestScope.page.pageTotal-3}">
-						<c:set var="begin" value="${requestScope.page.pageTotal-4}"/>
-						<c:set var="end" value="${requestScope.page.pageTotal}"/>
-					</c:when>
-					<%--小情况 3：4，5，6，7，页码范围是：当前页码减 2 - 当前页码加 2--%>
-					<c:otherwise>
-						<c:set var="begin" value="${requestScope.page.pageNo-2}"/>
-						<c:set var="end" value="${requestScope.page.pageNo+2}"/>
-					</c:otherwise>
-				</c:choose>
-			</c:when>
-		</c:choose>
-		<c:forEach begin="${begin}" end="${end}" var="i">
-			<c:if test="${i == requestScope.page.pageNo}">
-				【${i}】
-			</c:if>
-			<c:if test="${i != requestScope.page.pageNo}">
-				<a href="client/bookServlet?action=page&pageNo=${i}">${i}</a>
-			</c:if>
-		</c:forEach>
-		<%--页码输出的结束--%>
-
-
-
-		<a href="#">3</a>
-		【${ requestScope.page.pageNo }】
-		<a href="#">5</a>
-		<%-- 如果已经 是最后一页，则不显示下一页，末页 --%>
-		<c:if test="${requestScope.page.pageNo < requestScope.page.pageTotal}">
-			<a href="client/bookServlet?action=page&pageNo=${requestScope.page.pageNo+1}">下一页</a>
-			<a href="client/bookServlet?action=page&pageNo=${requestScope.page.pageTotal}">末页</a>
-		</c:if>
-		共${ requestScope.page.pageTotal }页，${ requestScope.page.pageTotalCount }条记录
-		到第<input value="4" name="pn" id="pn_input"/>页
-		<input type="button" value="确定">
-
-	</div>
-
-<%--分页结束--%>
+	<%--静态包含分页跳--%>
+<%@include file="/pages/common/page_nav.jsp"%>
 </div>
 <%--静态包含页脚代码--%>
 <%@include file="/pages/common/footer.jsp"%>
