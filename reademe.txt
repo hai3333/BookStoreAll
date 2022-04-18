@@ -1,1 +1,6 @@
 尚硅谷javaweb 书城项目的完善和修改
+环境 ： 
+java 13.02
+tomcat 7.0
+mysql 
+
