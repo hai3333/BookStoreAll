@@ -1,4 +1,4 @@
-package com.example.bookstoreall.poje.web;
+package com.example.bookstoreall.web;
 
 import com.example.bookstoreall.poje.Book;
 import com.example.bookstoreall.poje.Page;
@@ -6,7 +6,6 @@ import com.example.bookstoreall.service.BookService;
 import com.example.bookstoreall.service.impl.BookServiceImpl;
 import com.example.bookstoreall.utils.WebUtils;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

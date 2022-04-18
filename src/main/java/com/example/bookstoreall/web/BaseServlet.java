@@ -1,4 +1,4 @@
-package com.example.bookstoreall.poje.web;
+package com.example.bookstoreall.web;
 
 import org.apache.commons.beanutils.BeanUtils;
 

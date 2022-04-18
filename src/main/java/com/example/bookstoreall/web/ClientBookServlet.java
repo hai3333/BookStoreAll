@@ -1,4 +1,4 @@
-package com.example.bookstoreall.poje.web;
+package com.example.bookstoreall.web;
 
 import com.example.bookstoreall.poje.Book;
 import com.example.bookstoreall.poje.Page;
